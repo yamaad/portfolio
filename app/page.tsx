@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <main className="relative dark:bg-black-100 flex justify-center items-center flex-col mx-auto">
+    <main className="relative dark:bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5">
       <div className="max-w-7xl w-full">
-        <LampContainer>
+        {/* <LampContainer>
           <motion.h1
             initial={{ opacity: 0, y: -150 }}
             whileInView={{ opacity: 1, y: 10 }}
@@ -21,14 +21,14 @@ export default function Home() {
           >
             Welcome Aboard!
           </motion.h1>
-        </LampContainer>
-        <Navbar
+        </LampContainer> */}
+        {/* <Navbar
           navItems={[
             { name: "Top", link: "#" },
             { name: "Top", link: "#" },
             { name: "Top", link: "#" },
           ]}
-        />
+        /> */}
         <Hero />
       </div>
     </main>
