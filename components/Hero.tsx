@@ -24,7 +24,7 @@ const Hero = () => {
             words="Transforming  Concepts into  Seamless  User  Experiences."
           />
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            Hi I'm Maad, a Software Developer based in Kuala Lumpur.
+            Hi I&apos;m Maad, a Software Developer based in Kuala Lumpur.
           </p>
           <a href="#about">
             <BorderMagicButton title="Show My Work" icon={<FaLocationArrow />} position="right" />

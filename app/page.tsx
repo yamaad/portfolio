@@ -1,8 +1,9 @@
 "use client";
 import Hero from "@/components/Hero";
 import { LampContainer } from "@/components/ui/lamp";
-import { Navbar } from "@/components/ui/Navbar";
+import { FloatingNav } from "@/components/ui/FloatingNav";
 import { motion } from "framer-motion";
+import { FaHome, FaUser, FaBriefcase, FaEnvelope } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -22,13 +23,14 @@ export default function Home() {
             Welcome Aboard!
           </motion.h1>
         </LampContainer> */}
-        {/* <Navbar
+        <FloatingNav
           navItems={[
-            { name: "Top", link: "#" },
-            { name: "Top", link: "#" },
-            { name: "Top", link: "#" },
+            { name: "Home", link: "#", icon: <FaHome /> },
+            { name: "About", link: "#", icon: <FaUser /> },
+            { name: "Projects", link: "#", icon: <FaBriefcase /> },
+            { name: "Contact", link: "#", icon: <FaEnvelope /> },
           ]}
-        /> */}
+        />
         <Hero />
       </div>
     </main>
