@@ -4,6 +4,7 @@ import { LampContainer } from "@/components/ui/lamp";
 import { FloatingNav } from "@/components/ui/FloatingNav";
 import { motion } from "framer-motion";
 import { FaHome, FaUser, FaBriefcase, FaEnvelope } from "react-icons/fa";
+import Grid from "@/components/Grid";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
           ]}
         />
         <Hero />
+        <Grid />
       </div>
     </main>
   );
