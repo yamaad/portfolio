@@ -45,8 +45,8 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
   if (!mounted) return null;
 
   return (
-    <header className="fixed top-0 w-full z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header dir="ltr" className="fixed top-0 w-full z-50">
+      <div className="mx-auto px-4 sm:px-6 lg:px-14">
         <div className="h-20 grid grid-cols-3 items-center">
           {/* Logo - Always on left */}
           <div className="flex justify-start">
@@ -66,7 +66,7 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
             </div>
 
             <nav className="relative px-6 py-2">
-              <ul className={cn("flex items-center justify-center gap-8", locale === "ar" ? "rtl" : "ltr")}>
+              <ul className={cn("flex items-center justify-center gap-8")}>
                 {navItems.map(item => (
                   <motion.li key={item.href}>
                     <motion.a
