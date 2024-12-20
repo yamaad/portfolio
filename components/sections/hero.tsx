@@ -3,8 +3,39 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiNodedotjs,
+  SiExpress,
+  SiNestjs,
+  SiDocker,
+  SiPostgresql,
+  SiMongodb,
+  SiFirebase,
+  SiThreedotjs,
+  SiFlutter,
+} from "react-icons/si";
+import { TypewriterEffect } from "../ui/typewriter-effect";
+import { Button } from "../ui/moving-border";
 import hero from "@/data/content/hero";
 import { cn } from "@/utils/cn";
+
+const technologies = [
+  { icon: SiReact, name: "React" },
+  { icon: SiNextdotjs, name: "Next.js" },
+  { icon: SiTypescript, name: "TypeScript" },
+  { icon: SiNodedotjs, name: "Node.js" },
+  { icon: SiExpress, name: "Express" },
+  { icon: SiNestjs, name: "NestJS" },
+  { icon: SiDocker, name: "Docker" },
+  { icon: SiPostgresql, name: "PostgreSQL" },
+  { icon: SiMongodb, name: "MongoDB" },
+  { icon: SiFirebase, name: "Firebase" },
+  { icon: SiThreedotjs, name: "Three.js" },
+  { icon: SiFlutter, name: "Flutter" },
+];
 
 interface HeroProps {
   locale: "en" | "ar";
@@ -15,65 +46,64 @@ export const Hero = ({ locale }: HeroProps) => {
   const content = hero[locale];
   const isRTL = locale === "ar";
 
-  return (
-    <div className={cn("relative min-h-screen flex items-center justify-center overflow-hidden", isRTL && "rtl")}>
-      {/* Animated background */}
-      <div className="absolute inset-0 w-full h-full bg-background">
-        <div className="absolute inset-0 w-full h-full bg-grid-white/[0.2] bg-grid-[rgba(255,255,255,0.2)] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="w-full h-full bg-gradient-to-r from-primary/20 to-secondary/20 blur-3xl" />
-        </motion.div>
-      </div>
+  const words = content.title.split(" ").map(word => ({
+    text: word,
+    className: "text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary",
+  }));
 
+  return (
+    <div className={cn("relative min-h-screen w-full flex items-center justify-center overflow-hidden", isRTL && "rtl")}>
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-              {content.title}
-            </h1>
+          {/* Animated title */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-8">
+            <TypewriterEffect words={words} className="text-4xl sm:text-6xl lg:text-7xl font-bold" />
           </motion.div>
 
+          {/* Subtitle */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
             <p className="mt-6 text-lg sm:text-xl lg:text-2xl text-muted-foreground">{content.subtitle}</p>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-10">
-            <a
-              href="#projects"
-              className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden rounded-full bg-primary text-white transition duration-300 ease-out hover:bg-primary/90"
-            >
-              <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-primary group-hover:skew-x-12"></span>
-              <span className="absolute bottom-0 left-0 hidden w-10 h-20 transition-all duration-100 ease-out transform -translate-x-8 translate-y-10 bg-primary -rotate-12"></span>
-              <span className="relative">{content.cta}</span>
-            </a>
-          </motion.div>
-
-          {/* Tech stack pills */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-16 flex flex-wrap justify-center gap-4"
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
           >
-            {["React", "Next.js", "TypeScript", "Node.js", "Three.js"].map(tech => (
-              <motion.span
-                key={tech}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 rounded-full bg-muted text-muted-foreground text-sm font-medium"
-              >
-                {tech}
-              </motion.span>
-            ))}
+            <Button borderRadius="1.75rem" className="bg-primary text-white border-slate-800 dark:border-slate-200" href="#projects">
+              {content.cta}
+            </Button>
+            <Button borderRadius="1.75rem" className="bg-secondary text-white border-slate-800 dark:border-slate-200" href="#contact">
+              {locale === "en" ? "Book a Call" : "احجز مكالمة"}
+            </Button>
+          </motion.div>
+
+          {/* Tech stack with logos */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.6 }} className="mt-16">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-3xl mx-auto">
+              {technologies.map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                  className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/50 backdrop-blur-sm hover:bg-muted/80 transition-colors"
+                >
+                  <tech.icon className="w-8 h-8 text-primary" />
+                  <span className="text-sm font-medium text-muted-foreground">{tech.name}</span>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
     </div>
   );
 };
+
+export default Hero;
