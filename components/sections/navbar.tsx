@@ -8,6 +8,7 @@ import navigation from "@/data/content/navigation";
 import { cn } from "@/utils/cn";
 import { Logo } from "./logo";
 import { TopSheet } from "./top-sheet";
+import { LampContainer } from "../ui/lamp";
 
 interface NavbarProps {
   locale: "en" | "ar";
@@ -105,6 +106,25 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
 
       {/* Top Sheet Mobile Menu */}
       <TopSheet isOpen={isOpen} setIsOpen={setIsOpen} navItems={navItems} locale={locale} />
+      {/* Lamp Effect Navbar */}
+      <LampContainer className="hidden md:flex">
+        <nav className="relative z-50">
+          <ul className={cn("flex items-center justify-center", "px-4 py-2", "gap-4 lg:gap-8")}>
+            {navItems.map(item => (
+              <motion.li key={item.href} className="whitespace-nowrap">
+                <motion.a
+                  href={item.href}
+                  className="text-sm lg:text-base text-white hover:text-cyan-400 transition-colors"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ y: 0 }}
+                >
+                  {item.label}
+                </motion.a>
+              </motion.li>
+            ))}
+          </ul>
+        </nav>
+      </LampContainer>
     </>
   );
 };
