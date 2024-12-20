@@ -1,15 +1,28 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { LocaleProvider } from "@/components/providers/locale-provider";
+import { Navbar } from "@/components/sections/navbar";
+import { useLocale } from "@/components/providers/locale-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-//TODO: optimize for better SEO
-export const metadata: Metadata = {
-  title: "Maad Yasser - Portfolio",
-  description: "Web Developer specializing in modern web technologies",
-};
+function RootLayoutContent({ children }: { children: React.ReactNode }) {
+  const { locale, setLocale } = useLocale();
+
+  return (
+    <html lang={locale} suppressHydrationWarning dir={locale === "ar" ? "rtl" : "ltr"}>
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Navbar locale={locale} onLocaleChange={setLocale} />
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
 
 export default function RootLayout({
   children,
@@ -17,12 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <LocaleProvider>
+      <RootLayoutContent>{children}</RootLayoutContent>
+    </LocaleProvider>
   );
 }
