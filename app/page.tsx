@@ -1,8 +1,9 @@
 "use client";
 
 import { Hero } from "@/components/sections/hero";
-import { useEffect, useState } from "react";
+import { RootWrapper } from "@/components/sections/root-wrapper";
 import { useLocale } from "@/components/providers/locale-provider";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -16,9 +17,11 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <main className="relative flex justify-center items-center flex-col overflow-hidden">
-      <Hero locale={locale} />
-      {/* Other sections will go here */}
-    </main>
+    <RootWrapper>
+      <div className="relative flex justify-center items-center flex-col overflow-hidden">
+        <Hero locale={locale} />
+        {/* Other sections will go here */}
+      </div>
+    </RootWrapper>
   );
 }

@@ -1,0 +1,19 @@
+"use client";
+
+import { useLocale } from "@/components/providers/locale-provider";
+import { Navbar } from "./navbar";
+
+interface RootWrapperProps {
+  children: React.ReactNode;
+}
+
+export function RootWrapper({ children }: RootWrapperProps) {
+  const { locale, setLocale } = useLocale();
+
+  return (
+    <>
+      <Navbar locale={locale} onLocaleChange={setLocale} />
+      <main className={locale === "ar" ? "rtl" : "ltr"}>{children}</main>
+    </>
+  );
+}

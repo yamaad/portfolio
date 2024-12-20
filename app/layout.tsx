@@ -1,28 +1,22 @@
-"use client";
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LocaleProvider } from "@/components/providers/locale-provider";
-import { Navbar } from "@/components/sections/navbar";
-import { useLocale } from "@/components/providers/locale-provider";
+import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-function RootLayoutContent({ children }: { children: React.ReactNode }) {
-  const { locale, setLocale } = useLocale();
-
-  return (
-    <html lang={locale} suppressHydrationWarning dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Navbar locale={locale} onLocaleChange={setLocale} />
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  );
-}
+// Metadata configuration
+export const metadata: Metadata = {
+  title: "Maad Yasser | Full Stack Developer",
+  description: "Full Stack Developer specializing in modern web technologies and digital experiences",
+  icons: {
+    icon: [{ url: "/logo.svg", type: "image/svg+xml" }, { url: "/favicon.ico" }],
+    shortcut: "/logo.svg",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+};
 
 export default function RootLayout({
   children,
@@ -30,8 +24,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <LocaleProvider>
-      <RootLayoutContent>{children}</RootLayoutContent>
-    </LocaleProvider>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+        <link rel="alternate icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
+      <body className={inter.className}>
+        <LocaleProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+        </LocaleProvider>
+      </body>
+    </html>
   );
 }
