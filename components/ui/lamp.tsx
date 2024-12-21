@@ -5,12 +5,7 @@ import { cn } from "@/utils/cn";
 
 export const LampContainer = ({ children, className }: { children: React.ReactNode; className?: string }) => {
   return (
-    <div
-      className={cn(
-        "absolute -top-60 flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background w-full rounded-md z-0",
-        className
-      )}
-    >
+    <div className={cn("absolute -top-60 flex min-h-screen flex-col items-center justify-center overflow-hidden  w-full rounded-md z-0", className)}>
       <div className="relative flex w-full flex-1 scale-y-150 items-center justify-center isolate z-0">
         <div className="relative z-50 flex -translate-y-32 flex-col items-center px-5">{children}</div>
         <motion.div

@@ -22,13 +22,13 @@ export const ParticlesBackground = ({ className, children }: { className?: strin
   const getColors = () => {
     if (theme === "dark") {
       return {
-        primary: "#FFF5E6",
-        secondary: "#EBE3D7",
+        primary: "#FFF5E6", // Based on your dark mode primary HSL: 40 100% 94%
+        secondary: "#EBE3D7", // Based on your dark mode secondary HSL: 40 40% 92%
       };
     }
     return {
-      primary: "#7C3AED",
-      secondary: "#6B7280",
+      primary: "#7C3AED", // Based on your light mode primary HSL: 248 70% 66%
+      secondary: "#6B7280", // Based on your light mode secondary HSL: 240 30% 50%
     };
   };
 
@@ -37,9 +37,9 @@ export const ParticlesBackground = ({ className, children }: { className?: strin
   if (!init) return null;
 
   return (
-    <div className={cn("fixed inset-0 pointer-events-none", className)}>
+    <div className={cn("relative w-full overflow-hidden", className)}>
       <Particles
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-30"
         options={{
           fullScreen: false,
           fpsLimit: 120,
@@ -105,7 +105,7 @@ export const ParticlesBackground = ({ className, children }: { className?: strin
           },
         }}
       />
-      <div className="relative z-10 pointer-events-auto">{children}</div>
+      <div className="relative">{children}</div>
     </div>
   );
 };
