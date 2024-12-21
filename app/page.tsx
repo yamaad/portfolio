@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/hero";
 import { RootWrapper } from "@/components/sections/root-wrapper";
 import { useLocale } from "@/components/providers/locale-provider";
 import { useEffect, useState } from "react";
+import { ParticlesBackground } from "@/components/ui/particles-background";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -17,11 +18,13 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <RootWrapper>
-      <div className="relative flex justify-center items-center flex-col overflow-hidden">
-        <Hero locale={locale} />
-        {/* Other sections will go here */}
-      </div>
-    </RootWrapper>
+    <ParticlesBackground>
+      <RootWrapper>
+        <div className="relative flex justify-center items-center flex-col">
+          <Hero locale={locale} />
+          {/* Other sections will go here */}
+        </div>
+      </RootWrapper>
+    </ParticlesBackground>
   );
 }
