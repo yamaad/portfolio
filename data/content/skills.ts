@@ -19,7 +19,7 @@ export const skills: Skill[] = [
   { name: "Node.js", icon: "SiNodedotjs", color: "#339933", category: "backend" },
   { name: "Express", icon: "SiExpress", color: "#000000", category: "backend" },
   { name: "NestJS", icon: "SiNestjs", color: "#E0234E", category: "backend" },
-  { name: "Socket.io - WebSocket", icon: "SiSocketdotio", color: "#010101", category: "backend" },
+  { name: "Socket.io", icon: "SiSocketdotio", color: "#010101", category: "backend" },
   { name: "REST APIs", icon: "SiOpenapiinitiative", color: "#38B832", category: "backend" },
   { name: "TypeORM", icon: "SiTypescript", color: "#3178C6", category: "backend" },
   { name: "RabbitMQ", icon: "SiRabbitmq", color: "#FF6600", category: "backend" },
