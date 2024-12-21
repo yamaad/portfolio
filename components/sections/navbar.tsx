@@ -35,13 +35,16 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
 
   return (
     <>
-      <header dir="ltr" className={cn("fixed top-0 w-full z-50 bg-transparent", isOpen && "bg-background/5 backdrop-blur-lg")}>
+      <header
+        dir="ltr"
+        className="fixed top-0 w-full z-50 md:bg-transparent sm:bg-background/5 sm:backdrop-blur-lg md:backdrop:blur-0 sm:shadow-2xl md:shadow-none"
+      >
         <div className="mx-auto px-4 sm:px-6 lg:px-8 ">
-          <div className="h-16 relative flex items-end justify-between md:justify-normal">
+          <div className="h-20 relative flex items-center md:items-end md:pb-1 justify-between md:justify-normal">
             {/* Menu Toggle (Mobile) */}
-            <div className="md:hidden ">
-              <button className="p-2 rounded-md hover:bg-muted" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
-                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <div className="md:hidden bg-transparent ">
+              <button className="p-2 rounded-md hover:bg-muted active:bg-transparent" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+                {isOpen ? <X className="w-6 h-6 bg-transparent" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
 
@@ -57,7 +60,7 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
                     <motion.li key={item.href} className="whitespace-nowrap">
                       <motion.a
                         href={item.href}
-                        className="text-sm lg:text-base text-muted-foreground hover:text-primary transition-colors"
+                        className="text-lg lg:text-lg text-muted-foreground hover:text-primary transition-colors"
                         whileHover={{ y: -2 }}
                         whileTap={{ y: 0 }}
                       >
@@ -70,7 +73,7 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
             </div>
 
             {/* Right section with Theme and Language toggles */}
-            <div className="absolute right-4 top-6  z-50  flex items-center gap-1 sm:gap-4">
+            <div className="md:absolute right-4 top-6  z-50  flex items-center gap-1 sm:gap-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

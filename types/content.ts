@@ -12,12 +12,14 @@ export interface MetaData {
 }
 export interface HeroContent {
   title: string;
-  subtitle: string;
+  flipWords: [string[], string[]]; // First array for left words, second for right words
+  description: string;
   primaryCta: string;
   secondaryCta: string;
   highlights: string[];
   skills: Skill[];
 }
+
 
 export interface Skill {
   name: string;

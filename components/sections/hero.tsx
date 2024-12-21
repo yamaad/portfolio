@@ -35,11 +35,11 @@ import {
   SiOpenai,
   SiAirtable,
 } from "react-icons/si";
-import { TypewriterEffect } from "../ui/typewriter-effect";
 import { Button } from "../ui/moving-border";
 import hero from "@/data/content/hero";
 import { cn } from "@/utils/cn";
 import { type Skill } from "@/types/content";
+import { FlipWords } from "../ui/flip-words";
 
 const iconMap = {
   SiReact,
@@ -83,37 +83,44 @@ export const Hero = ({ locale }: HeroProps) => {
   const content = hero[locale];
   const isRTL = locale === "ar";
 
-  const words = content.title.split(" ").map(word => ({
-    text: word,
-    className: "text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary",
-  }));
-
   const SkillIcon = ({ skill }: { skill: Skill }) => {
     const IconComponent = iconMap[skill.icon as keyof typeof iconMap];
     return IconComponent ? <IconComponent className="w-6 h-6" style={{ color: skill.color }} /> : null;
   };
 
   return (
-    <div className={cn("relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 md:pt-48", isRTL && "rtl")}>
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  pb-20">
-        {" "}
-        {/* Adjusted padding top */}
+    <div className={cn("relative min-h-screen w-full flex items-center justify-center overflow-hidden", isRTL && "rtl")}>
+      <div className="relative z-10  px-4 sm:px-6 lg:px-8 pt-40 pb-20">
         <div className="text-center space-y-8">
-          {" "}
-          {/* Added consistent vertical spacing */}
-          {/* Title */}
-          <div>
-            <TypewriterEffect words={words} className="text-4xl sm:text-6xl lg:text-7xl font-bold" />
-          </div>
-          {/* Subtitle */}
-          <motion.p
+          {/* Main Title */}
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary leading-tight"
           >
-            {content.subtitle}
-          </motion.p>
+            {content.title}
+          </motion.h1>
+
+          {/* Dynamic Subtitle with FlipWords */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg sm:text-xl text-muted-foreground font-semibold "
+          >
+            <FlipWords words={content.flipWords} className="py0" repeatDelay={4000} locale={locale} />
+          </motion.div>
+
+          {/* Description */}
+          {/* <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto"
+          >
+            {content.description}
+          </motion.p> */}
+
           {/* Highlights */}
           <div className="flex flex-wrap justify-center gap-4">
             {content.highlights.map((highlight, index) => (
@@ -128,6 +135,7 @@ export const Hero = ({ locale }: HeroProps) => {
               </motion.span>
             ))}
           </div>
+
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button borderRadius="1.75rem" className="bg-primary text-white border-slate-800 dark:border-slate-200" href="#projects">
@@ -137,6 +145,7 @@ export const Hero = ({ locale }: HeroProps) => {
               {content.secondaryCta}
             </Button>
           </div>
+
           {/* Skills Grid */}
           <div>
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-3xl mx-auto">
