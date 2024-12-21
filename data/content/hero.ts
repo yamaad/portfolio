@@ -1,20 +1,23 @@
-// ./data/content/hero.ts
-import { LocalizedContent } from "@/types/content";
+// data/content/hero.ts
+import { LocalizedContent, HeroContent } from "@/types/content";
+import { skills } from "./skills";
 
-const hero: LocalizedContent<{
-  title: string;
-  subtitle: string;
-  cta: string;
-}> = {
+const hero: LocalizedContent<HeroContent> = {
   en: {
-    title: "Building Digital Experiences",
-    subtitle: "Full Stack Developer specializing in modern web technologies",
-    cta: "View My Work",
+    title: "Transforming Ideas into Digital Reality",
+    subtitle: "Unlocking Your Business Potential with Technology",
+    primaryCta: "Explore My Work",
+    secondaryCta: "Start a Project",
+    highlights: ["Full-stack Development", "Responsive Design", "AI Integration", "Real-time Applications", "Multilingual Support"],
+    skills,
   },
   ar: {
-    title: "بناء التجارب الرقمية",
-    subtitle: "مطور ويب متكامل متخصص في تقنيات الويب الحديثة",
-    cta: "تصفح أعمالي",
+    title: "تحويل الأفكار إلى واقع رقمي",
+    subtitle: "إطلاق إمكانات عملك من خلال التكنولوجيا",
+    primaryCta: "استكشف أعمالي",
+    secondaryCta: "ابدأ مشروعًا",
+    highlights: ["تطوير متكامل", "تصميم متجاوب", "تكامل الذكاء الاصطناعي", "تطبيقات فورية", "دعم متعدد اللغات"],
+    skills,
   },
 };
 

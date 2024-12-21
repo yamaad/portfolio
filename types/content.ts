@@ -10,6 +10,21 @@ export interface MetaData {
   lastUpdated: string;
   author: string;
 }
+export interface HeroContent {
+  title: string;
+  subtitle: string;
+  primaryCta: string;
+  secondaryCta: string;
+  highlights: string[];
+  skills: Skill[];
+}
+
+export interface Skill {
+  name: string;
+  icon: string;
+  color: string;
+  category?: "frontend" | "backend" | "database" | "tools" | "mobile" | "cloud";
+}
 
 export interface Service {
   id: string;
@@ -44,11 +59,7 @@ export interface Testimonial {
 
 export interface SiteContent {
   meta: MetaData;
-  hero: LocalizedContent<{
-    title: string;
-    subtitle: string;
-    cta: string;
-  }>;
+  hero: LocalizedContent<HeroContent>;
   services: LocalizedContent<Service[]>;
   // projects: LocalizedContent<Project[]>;
   // testimonials: LocalizedContent<Testimonial[]>;
