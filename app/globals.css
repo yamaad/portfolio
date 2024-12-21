@@ -10,9 +10,11 @@
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 248 90% 66%;
+    /* Decreased primary color strength */
+    --primary: 248 70% 66%;
     --primary-foreground: 240 5% 98%;
-    --secondary: 240 40% 50%;
+    /* More muted secondary */
+    --secondary: 240 30% 50%;
     --secondary-foreground: 240 5% 98%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
@@ -22,29 +24,33 @@
     --destructive-foreground: 240 5% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 248 90% 66%;
+    --ring: 248 70% 66%;
   }
   
   .dark {
+    /* Dark background with slight warmth */
     --background: 240 10% 3.9%;
-    --foreground: 240 5% 98%;
+    --foreground: 40 30% 98%;
     --card: 240 10% 3.9%;
-    --card-foreground: 240 5% 98%;
+    --card-foreground: 40 30% 98%;
     --popover: 240 10% 3.9%;
-    --popover-foreground: 240 5% 98%;
-    --primary: 248 90% 66%;
-    --primary-foreground: 240 5% 98%;
-    --secondary: 240 40% 50%;
-    --secondary-foreground: 240 5% 98%;
+    --popover-foreground: 40 30% 98%;
+    /* Warmer ivory primary with subtle glow */
+    --primary: 40 100% 94%;
+    --primary-foreground: 240 10% 3.9%;
+    /* Soft cream secondary */
+    --secondary: 40 40% 92%;
+    --secondary-foreground: 240 10% 3.9%;
+    /* Muted warm grays */
     --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted-foreground: 40 10% 80%;
     --accent: 240 3.7% 15.9%;
-    --accent-foreground: 240 5% 98%;
+    --accent-foreground: 40 30% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 240 5% 98%;
+    --destructive-foreground: 40 30% 98%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 248 90% 66%;
+    --ring: 40 100% 94%;
   }
 }
 
