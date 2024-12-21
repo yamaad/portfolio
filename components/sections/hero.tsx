@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import {
@@ -35,11 +35,11 @@ import {
   SiOpenai,
   SiAirtable,
 } from "react-icons/si";
-import { Button } from "../ui/moving-border";
 import hero from "@/data/content/hero";
 import { cn } from "@/utils/cn";
 import { type Skill } from "@/types/content";
 import { FlipWords } from "../ui/flip-words";
+import { AlternatingSkillRows, SpaceFloatingSkills } from "./skills";
 
 const iconMap = {
   SiReact,
@@ -79,15 +79,9 @@ interface HeroProps {
 }
 
 export const Hero = ({ locale }: HeroProps) => {
-  const { theme } = useTheme();
   const content = hero[locale];
   const isRTL = locale === "ar";
-
-  const SkillIcon = ({ skill }: { skill: Skill }) => {
-    const IconComponent = iconMap[skill.icon as keyof typeof iconMap];
-    return IconComponent ? <IconComponent className="w-6 h-6" style={{ color: skill.color }} /> : null;
-  };
-
+  const [skillsAnimationToggle, setSkillsAnimationToggle] = useState<boolean>(false);
   return (
     <div className={cn("relative min-h-screen w-full flex items-center justify-center overflow-hidden", isRTL && "rtl")}>
       <div className="relative z-10  px-4 sm:px-6 lg:px-8 pt-40 pb-20">
@@ -100,7 +94,6 @@ export const Hero = ({ locale }: HeroProps) => {
           >
             {content.title}
           </motion.h1>
-
           {/* Dynamic Subtitle with FlipWords */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -110,7 +103,6 @@ export const Hero = ({ locale }: HeroProps) => {
           >
             <FlipWords words={content.flipWords} className="py0" repeatDelay={4000} locale={locale} />
           </motion.div>
-
           {/* Description */}
           {/* <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -120,7 +112,9 @@ export const Hero = ({ locale }: HeroProps) => {
           >
             {content.description}
           </motion.p> */}
-
+          {/* 
+          // TODO: Do I need to add button/s? [Explore My Work","Start a Project", "download resume"]
+           */}
           {/* Highlights */}
           <div className="flex flex-wrap justify-center gap-4">
             {content.highlights.map((highlight, index) => (
@@ -135,36 +129,9 @@ export const Hero = ({ locale }: HeroProps) => {
               </motion.span>
             ))}
           </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button borderRadius="1.75rem" className="bg-primary text-white border-slate-800 dark:border-slate-200" href="#projects">
-              {content.primaryCta}
-            </Button>
-            <Button borderRadius="1.75rem" className="bg-secondary text-white border-slate-800 dark:border-slate-200" href="#contact">
-              {content.secondaryCta}
-            </Button>
-          </div>
-
           {/* Skills Grid */}
-          <div>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-3xl mx-auto">
-              {content.skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 * (index % 6) }}
-                  className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/50 backdrop-blur-sm hover:bg-muted/80 transition-colors group"
-                >
-                  <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-                    <SkillIcon skill={skill} />
-                  </motion.div>
-                  <span className="text-sm font-medium text-muted-foreground">{skill.name}</span>
-                </motion.div>
-              ))}
-            </div>
+          <div className={cn(skillsAnimationToggle || "cursor-pointer")} onClick={() => setSkillsAnimationToggle(true)}>
+            {skillsAnimationToggle ? <AlternatingSkillRows skills={content.skills} /> : <SpaceFloatingSkills skills={content.skills} />}
           </div>
         </div>
       </div>

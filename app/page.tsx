@@ -18,13 +18,14 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <ParticlesBackground>
-      <RootWrapper>
-        <div className="relative flex justify-center items-center flex-col">
-          <Hero locale={locale} />
-          {/* Other sections will go here */}
-        </div>
-      </RootWrapper>
-    </ParticlesBackground>
+    // TODO: uncomment this when you deploy
+    // <ParticlesBackground>
+    <RootWrapper>
+      <div className="relative flex justify-center items-center flex-col">
+        <Hero locale={locale} />
+        {/* Other sections will go here */}
+      </div>
+    </RootWrapper>
+    //</ParticlesBackground>
   );
 }

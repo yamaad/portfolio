@@ -25,7 +25,7 @@ export interface Skill {
   name: string;
   icon: string;
   color: string;
-  category?: "frontend" | "backend" | "database" | "tools" | "mobile" | "cloud";
+  category?: string;
 }
 
 export interface Service {
