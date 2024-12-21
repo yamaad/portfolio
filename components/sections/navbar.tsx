@@ -36,8 +36,8 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
   return (
     <>
       <header dir="ltr" className="fixed top-0 w-full z-50 bg-background/0 backdrop-blur-sm">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="h-16 relative flex items-end justify-between md:justify-normal">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-1">
+          <div className="h-14 relative flex items-end justify-between md:justify-normal">
             {/* Menu Toggle (Mobile) */}
             <div className="md:hidden ">
               <button className="p-2 rounded-md hover:bg-muted" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
