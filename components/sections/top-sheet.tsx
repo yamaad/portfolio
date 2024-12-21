@@ -22,16 +22,16 @@ export const TopSheet = ({ isOpen, setIsOpen, navItems, locale }: TopSheetProps)
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-background/0 backdrop-blur-0"
           />
 
           {/* Top Sheet */}
           <motion.div
-            initial={{ y: "-100%" }}
+            initial={{ y: "-80%" }}
             animate={{ y: 0 }}
             exit={{ y: "-100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 200 }}
-            className="fixed top-20 inset-x-0 z-40 bg-gradient-to-b from-background/95 to-background/50 backdrop-blur-lg border-b border-border"
+            className="fixed top-16 inset-x-0 z-40 bg-gradient-to-b from-background/5 to-background/0 backdrop-blur-lg "
           >
             <div className="overflow-y-auto px-6 py-6">
               {/* Menu Items with Staggered Animation */}
@@ -47,7 +47,7 @@ export const TopSheet = ({ isOpen, setIsOpen, navItems, locale }: TopSheetProps)
                     >
                       <motion.a
                         href={item.href}
-                        className="block px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
+                        className="block px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/0"
                         onClick={() => setIsOpen(false)}
                         whileHover={{ x: 10 }}
                         whileTap={{ scale: 0.98 }}
