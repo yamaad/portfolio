@@ -39,7 +39,7 @@ export const ParticlesBackground = ({ className, children }: { className?: strin
   return (
     <div className={cn("relative w-full overflow-hidden", className)}>
       <Particles
-        className="absolute inset-0 z-30"
+        className="absolute inset-0 z-30 pointer-events-none"
         options={{
           fullScreen: false,
           fpsLimit: 120,

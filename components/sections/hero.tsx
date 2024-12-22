@@ -130,7 +130,7 @@ export const Hero = ({ locale }: HeroProps) => {
             ))}
           </div>
           {/* Skills Grid */}
-          <div className={cn(skillsAnimationToggle || "cursor-pointer")} onClick={() => setSkillsAnimationToggle(true)}>
+          <div className={cn("z-40", skillsAnimationToggle || "cursor-pointer")} onClick={() => setSkillsAnimationToggle(true)}>
             {skillsAnimationToggle ? <AlternatingSkillRows skills={content.skills} /> : <SpaceFloatingSkills skills={content.skills} />}
           </div>
         </div>

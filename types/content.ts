@@ -28,6 +28,35 @@ export interface Skill {
   category?: string;
 }
 
+export type WorkItemType = "professional" | "project";
+export interface WorkItem {
+  id: string;
+  type: WorkItemType;
+  title: string;
+  period: string;
+  brief: string;
+  impact: {
+    metrics: string[];
+    achievements: string[];
+  };
+  technical: {
+    architecture?: string;
+    stack: string[];
+    highlights: string[];
+  };
+  case_study: {
+    challenge: string;
+    approach: string;
+    solution: string;
+    outcomes: string[];
+  };
+  visuals?: {
+    current?: string;
+    planned?: string;
+    // For projects under improvement
+    mockups?: string[];
+  };
+}
 export interface Service {
   id: string;
   title: string;
@@ -35,19 +64,6 @@ export interface Service {
   features: string[];
   technologies: string[];
   icon?: string;
-}
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  challenge: string;
-  solution: string;
-  technologies: string[];
-  outcomes: string[];
-  imageUrl?: string;
-  demoUrl?: string;
-  githubUrl?: string;
 }
 
 export interface Testimonial {
@@ -62,8 +78,8 @@ export interface Testimonial {
 export interface SiteContent {
   meta: MetaData;
   hero: LocalizedContent<HeroContent>;
+  work: LocalizedContent<WorkItem[]>;
   services: LocalizedContent<Service[]>;
-  // projects: LocalizedContent<Project[]>;
   // testimonials: LocalizedContent<Testimonial[]>;
   // about: LocalizedContent<{
   //   title: string;
