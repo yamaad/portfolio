@@ -29,34 +29,74 @@ export interface Skill {
 }
 
 export type WorkItemType = "professional" | "project";
-export interface WorkItem {
+export interface TimePeriod {
+  start: Date;
+  end: Date | null; // null indicates current/ongoing
+}
+
+// Shared metrics and impact tracking
+export interface Impact {
+  metrics: string[]; // Quantifiable achievements
+  achievements: string[]; // Qualitative achievements
+}
+
+// Technical details shared between experiences and projects
+export interface Technical {
+  architecture: string; // System/solution architecture
+  stack: string[]; // Technologies used
+  highlights: string[]; // Key technical features/implementations
+}
+
+// For professional experiences
+export interface ProfessionalExperience {
   id: string;
-  type: WorkItemType;
-  title: string;
-  period: string;
-  brief: string;
-  impact: {
-    metrics: string[];
-    achievements: string[];
-  };
-  technical: {
-    architecture?: string;
-    stack: string[];
-    highlights: string[];
-  };
-  case_study: {
-    challenge: string;
-    approach: string;
-    solution: string;
-    outcomes: string[];
-  };
-  visuals?: {
-    current?: string;
-    planned?: string;
-    // For projects under improvement
-    mockups?: string[];
+  type: "professional";
+  company: string;
+  role: string;
+  period: TimePeriod;
+  responsibilities: string[]; // Key areas of responsibility
+  impact: Impact;
+  technical: Technical;
+  teamContext?: {
+    // Optional team context
+    size: number;
+    role: string;
+    collaboration: string[];
   };
 }
+
+// For projects
+export interface Project {
+  id: string;
+  type: "project";
+  title: string;
+  period: TimePeriod;
+  status: "completed" | "in-progress" | "planned";
+  brief: string;
+  challenge: {
+    description: string;
+    constraints: string[];
+  };
+  solution: {
+    approach: string;
+    implementation: string;
+    innovations: string[];
+  };
+  impact: Impact;
+  technical: Technical;
+  visuals?: {
+    // Optional visual assets
+    current?: string;
+    planned?: string;
+    mockups?: string[];
+    demo?: string;
+    github?: string;
+  };
+}
+
+// Combined type for work items
+export type WorkItem = ProfessionalExperience | Project;
+
 export interface Service {
   id: string;
   title: string;
@@ -78,7 +118,8 @@ export interface Testimonial {
 export interface SiteContent {
   meta: MetaData;
   hero: LocalizedContent<HeroContent>;
-  work: LocalizedContent<WorkItem[]>;
+  professional: LocalizedContent<ProfessionalExperience[]>;
+  projects: LocalizedContent<Project[]>;
   services: LocalizedContent<Service[]>;
   // testimonials: LocalizedContent<Testimonial[]>;
   // about: LocalizedContent<{

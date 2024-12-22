@@ -26,6 +26,6 @@ export default function Home() {
         {/* Other sections will go here */}
       </div>
     </RootWrapper>
-    //</ParticlesBackground>
+    // </ParticlesBackground>
   );
 }
