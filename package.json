@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "crypt:setup": "./git-crypt-setup.sh setup",
+    "crypt:unlock": "./git-crypt-setup.sh unlock"
   },
   "dependencies": {
     "@million/lint": "^1.0.11",
