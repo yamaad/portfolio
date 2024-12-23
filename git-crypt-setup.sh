@@ -63,6 +63,9 @@ setup_git_crypt() {
     check_command "git"
     check_command "git-crypt"
     
+    # Create docs directory if it doesn't exist
+    create_dir_if_not_exists "docs"
+    
     # Initialize git-crypt if not already initialized
     if [ ! -d ".git-crypt" ]; then
         print_message "info" "Initializing git-crypt..."
@@ -74,8 +77,8 @@ setup_git_crypt() {
     
     # Create or update .gitattributes
     cat > .gitattributes << EOL
-development-plan.md filter=git-crypt diff=git-crypt
-project-tree.txt filter=git-crypt diff=git-crypt
+docs/future-improvement.md filter=git-crypt diff=git-crypt
+docs/project-plan.md filter=git-crypt diff=git-crypt
 .git-crypt-key filter=git-crypt diff=git-crypt
 EOL
     print_message "success" "Created/Updated .gitattributes"
