@@ -79,6 +79,7 @@ setup_git_crypt() {
     cat > .gitattributes << EOL
 docs/future-improvement.md filter=git-crypt diff=git-crypt
 docs/project-plan.md filter=git-crypt diff=git-crypt
+project-tree.txt filter=git-crypt diff=git-crypt
 .git-crypt-key filter=git-crypt diff=git-crypt
 EOL
     print_message "success" "Created/Updated .gitattributes"
