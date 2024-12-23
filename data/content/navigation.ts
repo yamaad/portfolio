@@ -10,22 +10,10 @@ const navigation: LocalizedContent<{
   items: NavigationItem[];
 }> = {
   en: {
-    items: [
-      { label: "Home", href: "/" },
-      { label: "Projects", href: "#projects" },
-      { label: "Services", href: "#services" },
-      { label: "About", href: "#about" },
-      { label: "Contact", href: "#contact" },
-    ],
+    items: [{ label: "Home", href: "/" }],
   },
   ar: {
-    items: [
-      { label: "الرئيسية", href: "/" },
-      { label: "الخدمات", href: "#services" },
-      { label: "المشاريع", href: "#projects" },
-      { label: "حولي", href: "#about" },
-      { label: "تواصل", href: "#contact" },
-    ],
+    items: [{ label: "الرئيسية", href: "/" }],
   },
 };
 
