@@ -35,11 +35,10 @@ import {
   SiOpenai,
   SiAirtable,
 } from "react-icons/si";
-import hero from "@/data/content/hero";
 import { cn } from "@/utils/cn";
-import { type Skill } from "@/types/content";
 import { FlipWords } from "../ui/flip-words";
 import { AlternatingSkillRows, SpaceFloatingSkills } from "./skills";
+import { hero } from "@/data/content/hero";
 
 const iconMap = {
   SiReact,

@@ -1,7 +1,20 @@
 // ./data/content/index.ts
-import { SiteContent } from "@/types/content";
-import hero from "./hero";
+import { Experience, experience } from "./experience";
+import { hero, HeroContent } from "./hero";
+export interface MetaData {
+  lastUpdated: string;
+  author: string;
+}
+export type Locale = "en" | "ar";
 
+export interface LocalizedContent<T> {
+  en: T;
+  ar: T;
+}
+export interface SiteContent {
+  meta: MetaData;
+  hero: LocalizedContent<HeroContent>;
+}
 export const siteContent: SiteContent = {
   meta: {
     lastUpdated: "2024-12-20",
@@ -9,5 +22,3 @@ export const siteContent: SiteContent = {
   },
   hero,
 };
-
-export default siteContent;

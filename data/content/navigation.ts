@@ -1,5 +1,5 @@
 // ./data/content/navigation.ts
-import { LocalizedContent } from "@/types/content";
+import { LocalizedContent } from "./index";
 
 export interface NavigationItem {
   label: string;
