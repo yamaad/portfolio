@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "@/components/providers/locale-provider";
+import { useLocale } from "@/app/locale-provider";
 import { Navbar } from "./navbar";
 
 interface RootWrapperProps {
