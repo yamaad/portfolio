@@ -25,6 +25,7 @@ export default function Home() {
           <Hero locale={locale} />
           <ExperienceSection locale={locale} />
           {/* Other sections will go here */}
+          <div className="h-[1520px]"></div>
         </div>
       </RootWrapper>
     </ParticlesBackground>

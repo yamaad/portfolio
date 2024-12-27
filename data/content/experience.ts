@@ -1,8 +1,10 @@
 // data/content/experience.ts
 import { LocalizedContent } from "./index";
-
-export interface Experience {
+import engagesAi from "@/public/engagesai.svg";
+export interface IExperience {
   company: string;
+  companyLogo: string;
+  companyUrl: string;
   role: string;
   overview: string;
   period: {
@@ -18,10 +20,12 @@ export interface Experience {
   Projects?: Project[];
 }
 
-export const experience: LocalizedContent<Experience[]> = {
+export const experience: LocalizedContent<IExperience[]> = {
   en: [
     {
       company: "Engages.ai",
+      companyLogo: engagesAi,
+      companyUrl: "https://engages.ai/",
       role: "Software Developer",
       overview:
         "A dynamic role focused on building scalable web applications and AI integrations, contributing to both frontend and backend development while maintaining high standards for code quality and user experience.",
@@ -38,9 +42,8 @@ export const experience: LocalizedContent<Experience[]> = {
       impact: {
         metrics: [
           "Modernized 60% of core features with 90% completion rate",
-          "Contributed to 50% of client AI assistance implementations",
+          "Engineered and integrated 50% of clients AI assistance",
           "Managed approximately 12% of team's total workload",
-          "Engineered and integrated 3 custom chatbots",
         ],
         achievements: [
           "Significantly improved development efficiency through reusable components",
@@ -66,12 +69,14 @@ export const experience: LocalizedContent<Experience[]> = {
     },
     {
       company: "Engages.ai",
+      companyLogo: engagesAi,
+      companyUrl: "https://engages.ai/",
       role: "Software Developer Intern",
       overview:
         "Contributed to developing and enhancing the company's web-based customer relationship management systems, focusing on building scalable frontend components and implementing robust backend features.",
       period: {
-        start: new Date("2022-10-01"),
-        end: new Date("2023-03-01"),
+        start: new Date("2022-10-17"),
+        end: new Date("2023-03-17"),
       },
       highlights: [
         "Created dynamic UI components for user management interfaces",
@@ -98,6 +103,8 @@ export const experience: LocalizedContent<Experience[]> = {
   ar: [
     {
       company: "Engages.ai",
+      companyLogo: engagesAi,
+      companyUrl: "https://engages.ai/",
       role: "مطور برمجيات",
       overview:
         "دور ديناميكي يركز على بناء تطبيقات ويب قابلة للتطوير وتكاملات الذكاء الاصطناعي، مع المساهمة في تطوير الواجهة الأمامية والخلفية مع الحفاظ على معايير عالية لجودة الكود وتجربة المستخدم.",
@@ -142,6 +149,8 @@ export const experience: LocalizedContent<Experience[]> = {
     },
     {
       company: "Engages.ai",
+      companyLogo: engagesAi,
+      companyUrl: "https://engages.ai/",
       role: "متدرب تطوير برمجيات",
       overview:
         "المساهمة في تطوير وتحسين أنظمة إدارة علاقات العملاء المستندة إلى الويب للشركة، مع التركيز على بناء مكونات الواجهة الأمامية القابلة للتطوير وتنفيذ ميزات الخلفية القوية.",
