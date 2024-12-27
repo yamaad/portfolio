@@ -5,6 +5,7 @@ import { RootWrapper } from "@/components/sections/root-wrapper";
 import { useEffect, useState } from "react";
 import { ParticlesBackground } from "@/components/ui/particles-background";
 import { useLocale } from "./locale-provider";
+import ExperienceSection from "@/components/sections/experience";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -22,6 +23,7 @@ export default function Home() {
       <RootWrapper>
         <div className="relative flex justify-center items-center flex-col">
           <Hero locale={locale} />
+          <ExperienceSection locale={locale} />
           {/* Other sections will go here */}
         </div>
       </RootWrapper>
