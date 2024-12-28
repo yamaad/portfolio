@@ -16,7 +16,6 @@ export interface IExperience {
     metrics: string[];
     achievements: string[];
   };
-  stack: string[];
   Projects?: Project[];
 }
 
@@ -52,20 +51,6 @@ export const experience: LocalizedContent<IExperience[]> = {
           "Improved application responsiveness and user experience",
         ],
       },
-      stack: [
-        "React",
-        "TypeScript",
-        "Redux Toolkit",
-        "Material UI",
-        "NestJS",
-        "Express",
-        "PostgreSQL",
-        "TypeORM",
-        "WebSocket",
-        "RabbitMQ",
-        "Rasa Framework",
-        "OpenAI API",
-      ],
     },
     {
       company: "Engages.ai",
@@ -97,7 +82,6 @@ export const experience: LocalizedContent<IExperience[]> = {
           "Contributed to establishment of development best practices",
         ],
       },
-      stack: ["React", "TypeScript", "Material UI", "Express", "PostgreSQL", "Git", "Bitbucket", "Jira"],
     },
   ],
   ar: [
@@ -132,20 +116,6 @@ export const experience: LocalizedContent<IExperience[]> = {
           "تحسين استجابة التطبيق وتجربة المستخدم",
         ],
       },
-      stack: [
-        "React",
-        "TypeScript",
-        "Redux Toolkit",
-        "Material UI",
-        "NestJS",
-        "Express",
-        "PostgreSQL",
-        "TypeORM",
-        "WebSocket",
-        "RabbitMQ",
-        "Rasa Framework",
-        "OpenAI API",
-      ],
     },
     {
       company: "Engages.ai",
@@ -173,7 +143,6 @@ export const experience: LocalizedContent<IExperience[]> = {
           "المساهمة في وضع أفضل ممارسات التطوير",
         ],
       },
-      stack: ["React", "TypeScript", "Material UI", "Express", "PostgreSQL", "Git", "Bitbucket", "Jira"],
     },
   ],
 };
