@@ -50,7 +50,7 @@ const ExperienceCard = ({ experience, locale, index }: ExperienceCardProps) => {
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
+      viewport={{ amount: 0.2 }}
       className={cn(
         "relative rounded-xl",
         "bg-gradient-to-br from-card/50 to-card",
@@ -160,12 +160,12 @@ const ExperienceSection = ({ locale }: { locale: Locale }) => {
   }));
 
   return (
-    <div className="container mx-auto px-4 max-w-6xl">
-      <div className="max-w-7xl mx-auto py-16">
+    <div className="container mx-auto pl-4 max-w-6xl">
+      <div className="max-w-7xl mx-auto py-2 text-center  sm:text-start">
         <h2 className="text-4xl font-bold mb-4 text-black dark:text-white max-w-4xl">
           {locale === "en" ? "Changelog from my journey" : "مسيرتي المهنية"}
         </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-base max-w-sm">
+        <p className="text-neutral-700 dark:text-neutral-300 text-base">
           {locale === "en"
             ? `I've been working in digital solutions for the past ${totalTime} years. Here's a timeline of my professional journey.`
             : `لقد عملت في مجال الحلول الرقمية لمدة ${totalTime} سنوات. إليكم الجدول الزمني لرحلتي المهنية.`}
