@@ -1,5 +1,4 @@
-// ./data/content/index.ts
-import { Experience, experience } from "./experience";
+// ./data/content/site-content.ts
 import { hero, HeroContent } from "./hero";
 export interface MetaData {
   lastUpdated: string;

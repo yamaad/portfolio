@@ -1,5 +1,5 @@
 // data/content/experience.ts
-import { LocalizedContent } from "./index";
+import { LocalizedContent } from "./site-content";
 import engagesAi from "@/public/engagesai.svg";
 export interface IExperience {
   company: string;

@@ -1,5 +1,5 @@
 // data/content/hero.ts
-import { LocalizedContent } from "./index";
+import { LocalizedContent } from "./site-content";
 
 export interface HeroContent {
   title: string;

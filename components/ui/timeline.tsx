@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useMotionValueEvent, useScroll, useTransform, motion } from "framer-motion";
 import { formatDateToString } from "@/utils/date";
-import { Locale } from "@/data/content";
+import { Locale } from "@/data/content/site-content";
 import { cn } from "@/utils/cn";
 
 interface TimelineEntry {

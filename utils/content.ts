@@ -1,6 +1,6 @@
 // ./utils/content.ts
 
-import { Locale, LocalizedContent } from "@/data/content";
+import { Locale, LocalizedContent } from "@/data/content/site-content";
 
 
 export function getLocalizedContent<T>(content: LocalizedContent<T>, locale: Locale): T {

@@ -2,7 +2,7 @@ import { Timeline } from "@/components/ui/timeline";
 import { getLocalizedContent } from "@/utils/content";
 import { experience, IExperience } from "@/data/content/experience";
 import { AnimatePresence, motion } from "framer-motion";
-import { Locale } from "@/data/content";
+import { Locale } from "@/data/content/site-content";
 import { useState } from "react";
 import { cn } from "@/utils/cn";
 import { ExternalLink } from "lucide-react";
