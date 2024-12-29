@@ -141,10 +141,10 @@ export const Timeline = ({ data, locale }: { data: TimelineEntry[]; locale: Loca
   }, []);
 
   return (
-    <div className={cn("relative w-full font-sans ", locale === "ar" && "rtl")}>
+    <div className={cn("relative w-full", locale === "ar" && "rtl")}>
       <div
         ref={containerRef}
-        className="relative max-w-3xl mx-auto h-[600px] overflow-y-auto scrollbar-none overscroll-y-auto  snap-y snap-mandatory"
+        className="relative max-w-3xl mx-auto h-[500px] overflow-y-auto scrollbar-none overscroll-y-auto  snap-y snap-mandatory"
       >
         <div ref={listRef} className="relative pb-10">
           {data.map((item, index) => (
