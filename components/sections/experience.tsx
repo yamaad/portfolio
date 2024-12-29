@@ -148,24 +148,31 @@ const ExperienceCard = ({ experience, locale, index }: ExperienceCardProps) => {
 };
 
 const ExperienceSection = ({ locale }: { locale: Locale }) => {
-  // TODO Sort data base on the date
+  // TODO Sort data base on the period start date
+  const totalTime = 2; // TODO: calculate the duration from the period start date of the first array item to the period end of the last array item
+
   const localizedExperience = getLocalizedContent(experience, locale);
   const isRTL = locale === "ar";
   const timelineData = localizedExperience.map((exp, index) => ({
     period: exp.period,
-    logo: exp.companyLogo,
-    company: exp.company,
     role: exp.role,
-    companyUrl: exp.companyUrl,
     content: <ExperienceCard experience={exp} locale={locale} index={index} />,
   }));
 
   return (
-    <section className={cn("w-full min-h-screen py-20", "flex flex-col items-center justify-center", isRTL && "rtl")}>
-      <div className="container mx-auto px-4 max-w-6xl">
-        <Timeline data={timelineData} locale={locale} />
+    <div className="container mx-auto px-4 max-w-6xl">
+      <div className="max-w-7xl mx-auto py-16">
+        <h2 className="text-4xl font-bold mb-4 text-black dark:text-white max-w-4xl">
+          {locale === "en" ? "Changelog from my journey" : "مسيرتي المهنية"}
+        </h2>
+        <p className="text-neutral-700 dark:text-neutral-300 text-base max-w-sm">
+          {locale === "en"
+            ? `I've been working in digital solutions for the past ${totalTime} years. Here's a timeline of my professional journey.`
+            : `لقد عملت في مجال الحلول الرقمية لمدة ${totalTime} سنوات. إليكم الجدول الزمني لرحلتي المهنية.`}
+        </p>
       </div>
-    </section>
+      <Timeline data={timelineData} locale={locale} />
+    </div>
   );
 };
 
