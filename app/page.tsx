@@ -1,7 +1,7 @@
 "use client";
 
 import { Hero } from "@/components/sections/hero";
-import { RootWrapper } from "@/components/sections/root-wrapper";
+import { RootWrapper } from "@/app/root-wrapper";
 import { useEffect, useState } from "react";
 import { ParticlesBackground } from "@/components/ui/particles-background";
 import { useLocale } from "./locale-provider";

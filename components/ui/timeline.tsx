@@ -74,7 +74,7 @@ const TimelineItem = ({
         </div>
 
         {/* Content Column */}
-        <div className="flex-grow space-y-4">
+        <div className="flex-grow space-y-4 pr-8">
           <div className="space-y-1">
             <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">{periodToString(item.period)}</p>
             <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">{item.role}</h3>
@@ -141,7 +141,7 @@ export const Timeline = ({ data, locale }: { data: TimelineEntry[]; locale: Loca
   }, []);
 
   return (
-    <div className={cn("relative w-full font-sans pr-4 ", locale === "ar" && "rtl")}>
+    <div className={cn("relative w-full font-sans ", locale === "ar" && "rtl")}>
       <div
         ref={containerRef}
         className="relative max-w-3xl mx-auto h-[600px] overflow-y-auto scrollbar-none overscroll-y-auto  snap-y snap-mandatory"

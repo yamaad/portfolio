@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "@/app/locale-provider";
-import { Navbar } from "./navbar";
+import { Navbar } from "../components/sections/navbar";
 
 interface RootWrapperProps {
   children: React.ReactNode;
