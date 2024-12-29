@@ -147,6 +147,15 @@ const ExperiencePopout = ({ experience, locale, onClose }: { experience: IExperi
             </div>
           </div>
         </div>
+        {/* Stack Tags */}
+
+        <div className="flex flex-wrap gap-2 mt-4">
+          {experience.stack.map((tech, index) => (
+            <span key={index} className="px-2.5 py-1 text-xs rounded-full bg-primary/0 text-primary border border-primary/20">
+              {tech}
+            </span>
+          ))}
+        </div>
       </motion.div>
     </div>,
     document.body
@@ -217,6 +226,22 @@ const ExperienceCard = ({ experience, locale, index }: ExperienceCardProps) => {
 
           {/* Role & Overview */}
           <p className="text-muted-foreground text-sm leading-relaxed mb-4">{experience.overview}</p>
+
+          {/* Stack Tags */}
+          {experience.stack && experience.stack.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-4">
+              {experience.stack.slice(0, 4).map((tech, index) => (
+                <span key={index} className="px-2.5 py-1 text-xs rounded-full bg-primary/0 text-primary border border-primary/20">
+                  {tech}
+                </span>
+              ))}
+              {experience.stack.length > 4 && (
+                <span className="px-2.5 py-1 text-xs rounded-full bg-primary/15 text-primary border border-primary/20 italic">
+                  +{experience.stack.length - 4} more
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </motion.div>
 
