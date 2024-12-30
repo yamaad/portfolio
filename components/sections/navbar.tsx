@@ -115,7 +115,7 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
                 className="p-2 rounded-full hover:bg-muted"
                 aria-label="Toggle theme"
               >
-                {theme === "dark" ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-slate-800" />}
+                {/* //TODO: {theme === "dark" ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-slate-800" />} */}
               </motion.button>
 
               <motion.button
@@ -125,7 +125,7 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
                 className="p-2 rounded-full hover:bg-muted"
                 aria-label="Toggle language"
               >
-                <Languages className="w-5 h-5" />
+                {/*  //TODO: <Languages className="w-5 h-5" /> */}
               </motion.button>
             </div>
           </div>
