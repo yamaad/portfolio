@@ -1,7 +1,7 @@
 "use client";
 
+import { Locale } from "@/data/content/site-content";
 import React, { createContext, useContext, useState } from "react";
-import type { Locale } from "@/types/content";
 
 interface LocaleContextType {
   locale: Locale;
