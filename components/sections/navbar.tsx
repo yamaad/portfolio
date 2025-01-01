@@ -108,16 +108,16 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
 
             {/* Right section with Theme and Language toggles */}
             <div className="md:absolute right-4 top-6  z-50  flex items-center gap-1 sm:gap-4">
-              <motion.button
+              {/* //TODO:      <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className="p-2 rounded-full hover:bg-muted"
                 aria-label="Toggle theme"
               >
-                {/* //TODO: {theme === "dark" ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-slate-800" />} */}
+{theme === "dark" ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-slate-800" />} 
               </motion.button>
-
+*/}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
