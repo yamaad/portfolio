@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import {
   SiReact,
   SiNextdotjs,
@@ -37,7 +36,7 @@ import {
 } from "react-icons/si";
 import { cn } from "@/utils/cn";
 import { FlipWords } from "../ui/flip-words";
-import { AlternatingSkillRows, SpaceFloatingSkills } from "./skills";
+import { AlternatingSkillRows } from "./skills";
 import { hero } from "@/data/content/hero";
 
 const iconMap = {
@@ -103,14 +102,14 @@ export const Hero = ({ locale }: HeroProps) => {
             <FlipWords words={content.flipWords} className="py0" repeatDelay={4000} locale={locale} />
           </motion.div>
           {/* Description */}
-          {/* <motion.p
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto"
           >
             {content.description}
-          </motion.p> */}
+          </motion.p>
           {/* 
           // TODO: Do I need to add button/s? [Explore My Work","Start a Project", "download resume"]
            */}
