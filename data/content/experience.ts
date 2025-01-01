@@ -1,4 +1,5 @@
 // data/content/experience.ts
+import { Project } from "./project";
 import { LocalizedContent } from "./site-content";
 import engagesAi from "@/public/engagesai.svg";
 export interface IExperience {
@@ -19,7 +20,7 @@ export interface IExperience {
   stack: string[];
   Projects?: Project[];
 }
-
+// TODO: add project reference to it related Job
 export const experience: LocalizedContent<IExperience[]> = {
   en: [
     {
