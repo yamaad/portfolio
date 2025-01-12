@@ -18,7 +18,7 @@ export interface IExperience {
     achievements: string[];
   };
   stack: string[];
-  Projects?: Project[];
+  projects?: Project[];
 }
 // TODO: add project reference to it related Job
 export const experience: LocalizedContent<IExperience[]> = {
