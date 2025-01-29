@@ -1,126 +1,131 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Globe } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Github, Globe } from "lucide-react";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
-import { Project } from "@/data/content/project";
+import { getLocalizedContent } from "@/utils/content";
+import { projects } from "@/data/content/project";
+import { Locale } from "@/data/content/site-content";
+import { LinkPreview } from "../ui/link-preview";
 
+interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  githubLink?: string;
+  demoLink?: string;
+  posterPortrait?: string;
+  posterLandscape?: string;
+}
+
+const ProjectImages = ({ project }: { project: Project }) => {
+  return (
+    <div className="absolute right-0 top-16 w-full h-full overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={"landscape"}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 0.8, x: 0 }}
+          exit={{ opacity: 0, x: 100 }}
+          transition={{
+            duration: 0.5,
+            ease: "easeInOut",
+          }}
+          className="absolute right-0 top-4 w-full h-full"
+        >
+          <Image
+            src={project.posterLandscape!}
+            width={600}
+            height={400}
+            alt={`${project.title}  preview`}
+            className={cn(
+              "absolute rounded-xl hover:opacity-100 transition-opacity duration-300",
+              "-right-10 lg:-right-[5%] -bottom-1 object-contain"
+            )}
+          />
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
 const ProjectCard = ({ project }: { project: Project }) => {
-  const [imageHeight, setImageHeight] = React.useState(0);
-  const [imageWidth, setImageWidth] = React.useState(0);
-  const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = event.target as HTMLImageElement;
-    setImageHeight(img.naturalHeight);
-    setImageWidth(img.naturalWidth);
-  };
-
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       className={cn(
+        "min-h-[400px] lg:min-h-[500px] min-w-[400px] flex-grow",
         "group relative rounded-xl bg-card",
         "border border-muted hover:border-primary/50",
         "transition-all duration-300 overflow-hidden",
-        "hover:shadow-2xl hover:shadow-primary/20",
-        " w-fit h-fit "
+        "hover:shadow-2xl hover:shadow-primary/20"
       )}
     >
       {/* Content Container */}
-      <div className=" h-fit w-fit  z-10 flex flex-col">
+      <div className="z-10 flex flex-col">
         {/* Header */}
-        <div className="flex px-6 pt-6 justify-between items-start">
+        <div className="flex p-6 justify-between ">
           <h3 className="text-xl lg:text-2xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
             {project.title}
           </h3>
-          <div className="flex gap-2">
+          <div className="flex gap-4 items-center">
             {project.githubLink && (
-              <motion.a
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-2 rounded-full hover:bg-muted"
-              >
-                <Github className="w-5 h-5" />
-              </motion.a>
+              <LinkPreview url={project.githubLink} className="flex items-center gap-3 max-w-fit group">
+                <motion.div rel="noopener noreferrer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="rounded-full hover:bg-muted">
+                  <Github className="w-5 h-5" />
+                </motion.div>
+              </LinkPreview>
             )}
             {project.demoLink && (
-              <motion.a
-                href={project.demoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-2 rounded-full hover:bg-muted"
-              >
-                <Globe className="w-5 h-5" />
-              </motion.a>
+              <LinkPreview url={project.demoLink} className="flex items-center gap-3 max-w-fit group">
+                <motion.div rel="noopener noreferrer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="rounded-full hover:bg-muted">
+                  <Globe className="w-5 h-5" />
+                </motion.div>
+              </LinkPreview>
             )}
+            {/* Expand Icon */}
+            <div className="text-muted-foreground/50 group-hover:text-primary/70 transition-colors h-fit">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="transition-transform group-hover:scale-110"
+              >
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+              </svg>
+            </div>
           </div>
         </div>
-
-        {/* Main Content */}
-        <div className=" h-fit max-w-fit  flex pl-6 justify-between ">
-          <div className="flex-grow">
-            <p className="mt-4 max-w-96 px-6 text-muted-foreground text-wrap">{project.description}</p>
-            {/* Features */}
-            <div className="mt-6 space-y-2">
-              <h4 className="font-medium text-primary/80">Key Features:</h4>
-              {/* <ul className="space-y-1">
-                {project.features.map((feature, index) => (
-                  <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <ArrowUpRight className="w-4 h-4 mt-0.5 text-primary/60" />
-                    {feature}
-                  </li>
-                ))}
-              </ul> */}
-            </div>
-
-            {/* Technologies */}
-            <div className="flex flex-wrap gap-2 mt-6">
-              {project.technologies.map(tech => (
-                <span key={tech} className="px-2 py-1 text-xs rounded-md bg-muted text-muted-foreground">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Project Image */}
-
-          <div className={cn("relative w-[300px] h-[300px] self-end  overflow-hidden rounded-2xl transition-transform duration-300")}>
-            <div
-              className={cn(
-                "absolute -bottom-0 -right-0 h-full w-full place-content-end items-end rounded-2xl transition-transform duration-300 object-contain hover:scale-75 flex"
-              )}
-            >
-              {project.posterLandscape && (
-                <Image
-                  src={project.posterLandscape}
-                  width={0}
-                  height={0}
-                  quality={100}
-                  sizes="100%"
-                  onLoad={handleImageLoad}
-                  style={{ width: imageHeight > imageWidth ? "auto" : "100%", height: imageHeight > imageWidth ? "100%" : "auto" }}
-                  // style={{ width: imageWidth + "px", height: imageHeight + "px" }}
-                  alt={`${project.title} screenshot`}
-                  className="object-contain rounded-2xl"
-                />
-              )}
-            </div>
-          </div>
+        {/* Technologies */}
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.slice(0, 3).map(tech => (
+            <span key={tech} className="px-2 py-1 text-xs rounded-full bg-muted text-muted-foreground">
+              {tech}
+            </span>
+          ))}
+          {project.technologies.length > 3 && (
+            <span className="px-2 py-1 text-xs rounded-full bg-muted text-muted-foreground">+{project.technologies.length - 3}</span>
+          )}
+        </div>
+        {/* Project Image */}
+        <div className=" flex-grow flex-shrink">
+          <ProjectImages project={project} />
         </div>
       </div>
     </motion.div>
   );
 };
 
-const ProjectsSection = ({ projects, locale = "en" }: { projects: Project[]; locale: string }) => {
+const ProjectsSection = ({ locale = "en" }: { locale: Locale }) => {
   const isRTL = locale === "ar";
+  const localizedProjects = getLocalizedContent(projects, locale);
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -136,7 +141,7 @@ const ProjectsSection = ({ projects, locale = "en" }: { projects: Project[]; loc
         </motion.div>
 
         <div className="grid grid-cols-2 gap-2 ">
-          {projects.map((project, index) => {
+          {localizedProjects.map((project, index) => {
             return <ProjectCard key={project.title} project={project} />;
           })}
         </div>
