@@ -14,7 +14,7 @@ export interface Project {
   demoLink?: string;
   posterPortrait?: string;
   posterLandscape?: string;
-  fullDescription?: any;
+  contributions?: string[];
 }
 
 export const projects: LocalizedContent<Project[]> = {
@@ -27,9 +27,6 @@ export const projects: LocalizedContent<Project[]> = {
         endYear: 2024,
       },
       technologies: ["WebFlow", "Framer Motion", "Express", "Airtable", "React"],
-      githubLink: "",
-      posterLandscape: "",
-      posterPortrait: "",
       demoLink: "https://www.edumize.com/en/home",
       description:
         "The Edumize website serves as a comprehensive platform designed to assist international students in pursuing higher education opportunities in Malaysia.",
@@ -42,12 +39,10 @@ export const projects: LocalizedContent<Project[]> = {
         startYear: 2025,
         endYear: 2025,
       },
-      fullDescription: [],
       description: "A modern, bilingual portfolio website with cutting-edge animations and seamless content management",
       technologies: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "Aceternity UI"],
       githubLink: "https://github.com/yamaad/portfolio",
-      demoLink: "",
-      posterLandscape: "",
+      // demoLink: window.location.href,
     },
     {
       title: "Engages.ai",
