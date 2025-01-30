@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { Github, Globe } from "lucide-react";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
@@ -25,13 +25,16 @@ interface Project {
 }
 
 const ProjectImages = ({ project }: { project: Project }) => {
+  const portraitWidth = 375; // iPhone X width
+  const portraitHeight = 812; // iPhone X height
+
   const getDemoLinkScreenshot = (isForMobile: boolean) => {
-    if (true || (!project.posterLandscape && !project.posterPortrait && project.demoLink)) {
+    if (!project.posterLandscape && !project.posterPortrait && project.demoLink) {
       const mobileAttributes = isForMobile
         ? {
             "viewport.isMobile": true,
-            "viewport.width": 375, // iPhone X width
-            "viewport.height": 812, // iPhone X height
+            "viewport.width": portraitWidth, // iPhone X width
+            "viewport.height": portraitHeight, // iPhone X height
             "viewport.deviceScaleFactor": 2, // Retina display
           }
         : {
@@ -56,8 +59,8 @@ const ProjectImages = ({ project }: { project: Project }) => {
       <AnimatePresence mode="wait">
         {(project.posterPortrait || demoLinkScreenshotPortrait) && (
           <motion.div
-            key={"landscape"}
-            initial={{ opacity: 0, x: 20 }}
+            key={"portrait"}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 0.7, x: 0 }}
             whileHover={{ opacity: 1 }}
             whileFocus={{ opacity: 0.7, x: 0 }}
@@ -67,29 +70,28 @@ const ProjectImages = ({ project }: { project: Project }) => {
               duration: 0.5,
               ease: "easeInOut",
             }}
-            className={cn(
-              "absolute rounded-xl hover:opacity-100 transition-opacity duration-300 overflow-hidden",
-              "right-[70%] lg:right-[70%] -bottom-[12%]"
-            )}
           >
             <Image
               src={project.posterPortrait || demoLinkScreenshotPortrait!}
-              width={200}
-              height={600}
+              width={portraitWidth / 2.3}
+              height={portraitHeight / 2.3}
               alt={`${project.title}  preview`}
-              className="object-contain"
+              className={cn(
+                " rounded-xl hover:opacity-100 hover:scale-90 transition-opacity duration-300 overflow-hidden",
+                "absolute right-[70%] lg:right-[70%] top-0 object-contain"
+              )}
             />
           </motion.div>
         )}
         {(project.posterLandscape || demoLinkScreenshotLandscape) && (
           <motion.div
             key={"landscape"}
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 0.7, x: 0 }}
+            whileHover={{ opacity: 1 }}
             whileFocus={{ opacity: 0.7, x: 0 }}
             whileTap={{ opacity: 0.7, x: 0 }}
             viewport={{ amount: 1, once: true }}
-            whileHover={{ opacity: 1 }}
             exit={{ opacity: 1, x: 100 }}
             transition={{
               duration: 0.5,
@@ -103,7 +105,7 @@ const ProjectImages = ({ project }: { project: Project }) => {
               alt={`${project.title}  preview`}
               className={cn(
                 "absolute rounded-xl hover:opacity-100 transition-opacity duration-300",
-                "-right-[31%] lg:-right-[31%] -bottom-[15%] object-contain"
+                "-right-[32%] lg:-right-[32%] -bottom-[17%] object-contain"
               )}
             />
           </motion.div>
@@ -122,18 +124,19 @@ const ProjectCard = ({ project }: { project: Project }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       className={cn(
-        "min-h-[400px]  min-w-full  md:min-w-[500px] max-w-full",
+        "min-h-[400px]  min-w-[90%]  md:min-w-[500px] max-w-full",
         "group relative rounded-xl bg-card",
         "border border-muted hover:border-primary/50",
         "transition-all duration-300 overflow-hidden",
-        "hover:shadow-2xl hover:shadow-primary/20"
+        "hover:shadow-2xl hover:shadow-primary/20",
+        "snap-center snap-always"
       )}
     >
       {/* Content Container */}
       <div className="z-10 flex flex-col h-full">
         {/* Header */}
         <div className="flex px-6 pt-6 pb-2 justify-between items-center">
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center flex-wrap">
             <h3 className="text-xl lg:text-2xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60 text-end">
               {project.title}
             </h3>
@@ -214,11 +217,11 @@ const ProjectsSection = ({ locale = "en" }: { locale: Locale }) => {
           <p className="text-muted-foreground max-w-2xl mx-auto">Explore my recent work showcasing technical expertise and creative solutions.</p>
         </motion.div>
 
-        <div className="flex flex-row gap-4 overflow-x-scroll">
+        <motion.div className="flex flex-row gap-4 overflow-x-scroll scrollbar-none snap-x snap-mandatory">
           {localizedProjects.map((project, index) => (
             <ProjectCard key={project.title} project={project} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
