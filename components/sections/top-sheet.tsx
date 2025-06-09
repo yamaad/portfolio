@@ -9,9 +9,10 @@ interface TopSheetProps {
   setIsOpen: (isOpen: boolean) => void;
   navItems: any[];
   locale: "en" | "ar";
+  onItemClick: (href: string) => void;
 }
 
-export const TopSheet = ({ isOpen, setIsOpen, navItems, locale }: TopSheetProps) => {
+export const TopSheet = ({ isOpen, setIsOpen, navItems, locale, onItemClick }: TopSheetProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -45,15 +46,14 @@ export const TopSheet = ({ isOpen, setIsOpen, navItems, locale }: TopSheetProps)
                       transition={{ delay: i * 0.1 }}
                       className="overflow-hidden rounded-lg text-center"
                     >
-                      <motion.a
-                        href={item.href}
-                        className="block px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/0"
-                        onClick={() => setIsOpen(false)}
+                      <motion.button
+                        onClick={() => onItemClick(item.href)}
+                        className="block w-full px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/0"
                         whileHover={{ x: 10 }}
                         whileTap={{ scale: 0.98 }}
                       >
                         {item.label}
-                      </motion.a>
+                      </motion.button>
                     </motion.li>
                   ))}
                 </ul>

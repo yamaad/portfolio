@@ -50,6 +50,25 @@ const Logo = () => (
   </motion.div>
 );
 
+const navItems = {
+  en: [
+    { label: "Home", href: "#home" },
+    { label: "Services", href: "#services" },
+    { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "Contact", href: "#contact" }
+  ],
+  ar: [
+    { label: "الرئيسية", href: "#home" },
+    { label: "الخدمات", href: "#services" },
+    { label: "الخبرة", href: "#experience" },
+    { label: "المشاريع", href: "#projects" },
+    { label: "الأسعار", href: "#pricing" },
+    { label: "التواصل", href: "#contact" }
+  ]
+};
+
 export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -63,9 +82,18 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
     setMounted(true);
   }, [mounted, locale, onLocaleChange]);
 
-  const navItems = navigation[locale].items;
+  const currentNavItems = navItems[locale];
 
   if (!mounted) return null;
+
+  const scrollToSection = (href: string) => {
+    const sectionId = href.replace('#', '');
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -90,16 +118,16 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
             <div className="hidden md:block w-full">
               <nav className="relative">
                 <ul className={cn("flex items-center justify-center", "px-4", "gap-4 lg:gap-8")}>
-                  {navItems.map(item => (
+                  {currentNavItems.map(item => (
                     <motion.li key={item.href} className="whitespace-nowrap">
-                      <motion.a
-                        href={item.href}
+                      <motion.button
+                        onClick={() => scrollToSection(item.href)}
                         className="text-lg lg:text-lg text-muted-foreground hover:text-primary transition-colors"
                         whileHover={{ y: -2 }}
                         whileTap={{ y: 0 }}
                       >
                         {item.label}
-                      </motion.a>
+                      </motion.button>
                     </motion.li>
                   ))}
                 </ul>
@@ -115,7 +143,7 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
                 className="p-2 rounded-full hover:bg-muted"
                 aria-label="Toggle theme"
               >
-                {/* //TODO: {theme === "dark" ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-slate-800" />} */}
+                {theme === "dark" ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-slate-800" />}
               </motion.button>
 
               <motion.button
@@ -125,14 +153,14 @@ export const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
                 className="p-2 rounded-full hover:bg-muted"
                 aria-label="Toggle language"
               >
-                {/*  //TODO: <Languages className="w-5 h-5" /> */}
+                <Languages className="w-5 h-5" />
               </motion.button>
             </div>
           </div>
         </div>
       </header>
       {/* Top Sheet Mobile Menu */}
-      <TopSheet isOpen={isOpen} setIsOpen={setIsOpen} navItems={navItems} locale={locale} />
+      <TopSheet isOpen={isOpen} setIsOpen={setIsOpen} navItems={currentNavItems} locale={locale} onItemClick={scrollToSection} />
       <LampContainer className="hidden md:flex">
         <></>
       </LampContainer>
