@@ -4,7 +4,16 @@ import MillionCompiler from "@million/lint";
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["api.microlink.io", "images.pexels.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api.microlink.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+      },
+    ],
   },
 };
 
